@@ -21,7 +21,7 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
  - IPS 4.x
  - Datenbank-Server
-   - Typ: MySQL o┌er MariaDB
+   - Typ: MySQL oder MariaDB
    - Datenbank mit ausreichenden Zugriffsrechten
 
 ## 3. Installation
