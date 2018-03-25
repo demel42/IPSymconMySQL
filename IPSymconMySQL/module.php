@@ -26,7 +26,7 @@ class IPSymconMySQL extends IPSModule
         $database = $this->ReadPropertyString('database');
 
         if ($server != '' && $port > 0) {
-			$ok = true;
+            $ok = true;
             if ($server == '') {
                 echo 'no value for property "server"';
                 $ok = false;
@@ -51,20 +51,21 @@ class IPSymconMySQL extends IPSModule
 
     public function TestConnection()
     {
-		$rows = $this->ExecuteSimple("select now() as now");
-		if ($rows && isset($rows[0]->now)) {
-			$now = strtotime($rows[0]->now);
-			$tstamp = date("d.m.Y H:i:s", $now);
-			$n = $now - time();
-			if (abs($n) > 1)
-				$msg = ", differ from localtime " . $n . "sec";
-			else
-				$msg = '';
-			echo "current timestamp on database-server is " . $tstamp . $msg;
-			$this->SetStatus(102);
-		} else {
+        $rows = $this->ExecuteSimple('select now() as now');
+        if ($rows && isset($rows[0]->now)) {
+            $now = strtotime($rows[0]->now);
+            $tstamp = date('d.m.Y H:i:s', $now);
+            $n = $now - time();
+            if (abs($n) > 1) {
+                $msg = ', differ from localtime '.$n.'sec';
+            } else {
+                $msg = '';
+            }
+            echo 'current timestamp on database-server is '.$tstamp.$msg;
+            $this->SetStatus(102);
+        } else {
             $this->SetStatus(201);
-		}
+        }
     }
 
     public function Open()
@@ -75,27 +76,31 @@ class IPSymconMySQL extends IPSModule
         $password = $this->ReadPropertyString('password');
         $database = $this->ReadPropertyString('database');
 
-        $this->SendDebug($this->scriptName, "open database " . $database . "@" . $server . ":" . $port . "(user=" . $user . ")", 0);
+        $this->SendDebug($this->scriptName, 'open database '.$database.'@'.$server.':'.$port.'(user='.$user.')', 0);
 
-		$dbHandle = new mysqli($server, $user, $password, $database);
-		if ($dbHandle->connect_errno) {
-			$this->SetBuffer('dbHandle', '');
-			$this->SendDebug($this->scriptName, "can't open database", 0);
-			echo "can't open database " . $database . "@" . $server . ": " . $dbHandle->connect_error . "\n";
-			return false;
-		}
+        $dbHandle = new mysqli($server, $user, $password, $database);
+        if ($dbHandle->connect_errno) {
+            $this->SetBuffer('dbHandle', '');
+            $this->SendDebug($this->scriptName, "can't open database", 0);
+            echo "can't open database ".$database.'@'.$server.': '.$dbHandle->connect_error."\n";
 
-		$this->SendDebug($this->scriptName, "  dbHandle=" . print_r($dbHandle, true), 0);
-		return $dbHandle;
+            return false;
+        }
+
+        $this->SendDebug($this->scriptName, '  dbHandle='.print_r($dbHandle, true), 0);
+
+        return $dbHandle;
     }
 
     public function Close(int $dbHandle)
     {
-		if ($dbHandle && $dbHandle->close() == false) {
-			echo "unable to close database\n";
-			return false;
-		}
-		return true;
+        if ($dbHandle && $dbHandle->close() == false) {
+            echo "unable to close database\n";
+
+            return false;
+        }
+
+        return true;
     }
 
     public function ExecuteSimple(string $statement)
@@ -103,32 +108,33 @@ class IPSymconMySQL extends IPSModule
         $server = $this->ReadPropertyString('server');
         $database = $this->ReadPropertyString('database');
 
-		$dbHandle = $this->Open();
-		if ($dbHandle == false) {
-			return ($dbHandle);
-		}
+        $dbHandle = $this->Open();
+        if ($dbHandle == false) {
+            return $dbHandle;
+        }
 
-		$this->SendDebug($this->scriptName, "execute statement \"" . $statement . "\" on " . $database . "@" . $server, 0);
-		$res = $dbHandle->query($statement);
-		if ($res == false) {
-			$this->SendDebug($this->scriptName, "unable to execute statement", 0);
-			echo "unable to execute statement \"" . $statement . "\": " . $dbHandle->error . "\n";
-			return ($res);
-		}
+        $this->SendDebug($this->scriptName, 'execute statement "'.$statement.'" on '.$database.'@'.$server, 0);
+        $res = $dbHandle->query($statement);
+        if ($res == false) {
+            $this->SendDebug($this->scriptName, 'unable to execute statement', 0);
+            echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
 
-		$this->SendDebug($this->scriptName, "  got ". $res->num_rows . " row", 0);
+            return $res;
+        }
 
-		if (!isset($res->num_rows)) {
-			return ($res);
-		}
+        $this->SendDebug($this->scriptName, '  got '.$res->num_rows.' row', 0);
 
-		$rows = '';
-		while ($row = $res->fetch_object()){
-			$rows[] = $row;
-		}
-		$res->close();
+        if (!isset($res->num_rows)) {
+            return $res;
+        }
 
-		return ($rows);
+        $rows = '';
+        while ($row = $res->fetch_object()) {
+            $rows[] = $row;
+        }
+        $res->close();
+
+        return $rows;
     }
 
     public function Query(int $dbHandle, string $statement)
@@ -136,31 +142,33 @@ class IPSymconMySQL extends IPSModule
         $server = $this->ReadPropertyString('server');
         $database = $this->ReadPropertyString('database');
 
-		if ($dbHandle == false) {
-			echo "unable to execute statement \"" . $statement . "\": invalid database-handle\n";
-			return ($dbHandle);
-		}
+        if ($dbHandle == false) {
+            echo 'unable to execute statement "'.$statement."\": invalid database-handle\n";
 
-		$this->SendDebug($this->scriptName, "query \"" . $statement . "\" on " . $database . "@" . $server, 0);
-		$res = $dbHandle->query($statement);
-		if ($res == false) {
-			$this->SendDebug($this->scriptName, "unable to query", 0);
-			echo "unable to execute statement \"" . $statement . "\": " . $dbHandle->error . "\n";
-			return ($res);
-		}
+            return $dbHandle;
+        }
 
-		if (!isset($res->num_rows)) {
-			return ($res);
-		}
+        $this->SendDebug($this->scriptName, 'query "'.$statement.'" on '.$database.'@'.$server, 0);
+        $res = $dbHandle->query($statement);
+        if ($res == false) {
+            $this->SendDebug($this->scriptName, 'unable to query', 0);
+            echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
 
-		$this->SendDebug($this->scriptName, "  got ". $res->num_rows . " row", 0);
+            return $res;
+        }
 
-		$rows = '';
-		while ($row = $res->fetch_object()){
-			$rows[] = $row;
-		}
-		$res->close();
+        if (!isset($res->num_rows)) {
+            return $res;
+        }
 
-		return ($rows);
+        $this->SendDebug($this->scriptName, '  got '.$res->num_rows.' row', 0);
+
+        $rows = '';
+        while ($row = $res->fetch_object()) {
+            $rows[] = $row;
+        }
+        $res->close();
+
+        return $rows;
     }
 }
