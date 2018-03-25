@@ -1,0 +1,25 @@
+{
+	"translations": {
+		"de": {
+			"Server": "Server",
+			"Port": "Port",
+
+			"default settings": "Voreinstellungen", 
+			"severity": "Schwere",
+			"possible values for severity: emerg, alert, crit, err, warning, notice, info, debug":
+				"mögliche Werte für die Schwere (severity): emerg, alert, crit, err, warning, notice, info, debug",
+			"facility": "Kategorie",
+			"possible values for facility: auth, local0, local1, local2, local3, local4, local5, local6, local7, user":
+				"mögliche Werte für die Kategorie (facility): auth, local0, local1, local2, local3, local4, local5, local6, local7, user",
+			"program": "Programm",
+
+			"Testmessage": "Testnachricht",
+
+			"Instance getting created": "Instanz wird erstellt",
+			"Instance is active": "Instanz ist aktiv",
+			"Instance is inactive": "Instanz ist inaktiv",
+
+			"Instance is inactive (invalid configuration)": "Instanz ist inaktiv (ungültige Konfiguration)"
+		}
+	}
+}

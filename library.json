@@ -1,0 +1,13 @@
+{
+	"id": "{C0E06BE4-D9D8-4208-8CDB-93D161A7CA98}",
+	"author": "Ch. Damsky",
+	"name": "IPSymconMySQL",
+	"url": "https://github.com/demel42/IPSymconMySQL",
+	"compatibility": {
+		"version": "4.2",
+		"date": 1491343200
+	},
+	"version": "1.0",
+	"build": 0,
+	"date": 1521901246
+}
