@@ -126,7 +126,7 @@ class IPSymconMySQL extends IPSModule
             return $res;
         }
 
-        $rows = '';
+        $rows = [];
         while ($row = $res->fetch_object()) {
             $rows[] = $row;
         }
@@ -161,7 +161,7 @@ class IPSymconMySQL extends IPSModule
 
         $this->SendDebug(__FUNCTION__, '  got '.$res->num_rows.' row', 0);
 
-        $rows = '';
+        $rows = [];
         while ($row = $res->fetch_object()) {
             $rows[] = $row;
         }

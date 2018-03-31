@@ -62,9 +62,9 @@ Schliesst die Datenbankverbindung.
 
 Öffnet die Datenbank und führt des SQL-Statement aus; das Ergebnis ist bei einer Abfrage dier Ergebnismenge als ein Array von Objekten bzw. _false bei einem Fehler (Fehlermeldung dann im Medungsfenster) oder by _update_ / _insert_ / _delete_ wird _true_ oder _false_ geliefert.
 
-`MySQL_Query(integer $InstanzID, object dbHandle, string Statement)`
+`MySQL_Query(integer $InstanzID, object $dbHandle, string Statement)`
 
-analog zu _MySQL_ExecuteSimple_, jedoch die der _dbHandle_ übergeben.
+analog zu _MySQL_ExecuteSimple_, jedoch wird der _dbHandle_ übergeben.
 
 ## 5. Konfiguration:
 
