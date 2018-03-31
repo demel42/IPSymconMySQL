@@ -2,8 +2,6 @@
 
 class IPSymconMySQL extends IPSModule
 {
-    private $scriptName = 'MySQL';
-
     public function Create()
     {
         parent::Create();
@@ -76,18 +74,18 @@ class IPSymconMySQL extends IPSModule
         $password = $this->ReadPropertyString('password');
         $database = $this->ReadPropertyString('database');
 
-        $this->SendDebug($this->scriptName, 'open database '.$database.'@'.$server.':'.$port.'(user='.$user.')', 0);
+        $this->SendDebug(__FUNCTION__, 'open database '.$database.'@'.$server.':'.$port.'(user='.$user.')', 0);
 
         $dbHandle = new mysqli($server, $user, $password, $database);
         if ($dbHandle->connect_errno) {
             $this->SetBuffer('dbHandle', '');
-            $this->SendDebug($this->scriptName, "can't open database", 0);
+            $this->SendDebug(__FUNCTION__, "can't open database", 0);
             echo "can't open database ".$database.'@'.$server.': '.$dbHandle->connect_error."\n";
 
             return false;
         }
 
-        $this->SendDebug($this->scriptName, '  dbHandle='.print_r($dbHandle, true), 0);
+        $this->SendDebug(__FUNCTION__, '  dbHandle='.print_r($dbHandle, true), 0);
 
         return $dbHandle;
     }
@@ -113,16 +111,16 @@ class IPSymconMySQL extends IPSModule
             return $dbHandle;
         }
 
-        $this->SendDebug($this->scriptName, 'execute statement "'.$statement.'" on '.$database.'@'.$server, 0);
+        $this->SendDebug(__FUNCTION__, 'execute statement "'.$statement.'" on '.$database.'@'.$server, 0);
         $res = $dbHandle->query($statement);
         if ($res == false) {
-            $this->SendDebug($this->scriptName, 'unable to execute statement', 0);
+            $this->SendDebug(__FUNCTION__, 'unable to execute statement', 0);
             echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
 
             return $res;
         }
 
-        $this->SendDebug($this->scriptName, '  got '.$res->num_rows.' row', 0);
+        $this->SendDebug(__FUNCTION__, '  got '.$res->num_rows.' row', 0);
 
         if (!isset($res->num_rows)) {
             return $res;
@@ -148,10 +146,10 @@ class IPSymconMySQL extends IPSModule
             return $dbHandle;
         }
 
-        $this->SendDebug($this->scriptName, 'query "'.$statement.'" on '.$database.'@'.$server, 0);
+        $this->SendDebug(__FUNCTION__, 'query "'.$statement.'" on '.$database.'@'.$server, 0);
         $res = $dbHandle->query($statement);
         if ($res == false) {
-            $this->SendDebug($this->scriptName, 'unable to query', 0);
+            $this->SendDebug(__FUNCTION__, 'unable to query', 0);
             echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
 
             return $res;
@@ -161,7 +159,7 @@ class IPSymconMySQL extends IPSModule
             return $res;
         }
 
-        $this->SendDebug($this->scriptName, '  got '.$res->num_rows.' row', 0);
+        $this->SendDebug(__FUNCTION__, '  got '.$res->num_rows.' row', 0);
 
         $rows = '';
         while ($row = $res->fetch_object()) {
