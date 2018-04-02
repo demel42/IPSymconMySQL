@@ -55,11 +55,11 @@ class IPSymconMySQL extends IPSModule
             $tstamp = date('d.m.Y H:i:s', $now);
             $n = $now - time();
             if (abs($n) > 1) {
-                $msg = ', differ from localtime '.$n.'sec';
+                $msg = ', differ from localtime ' . $n . 'sec';
             } else {
                 $msg = '';
             }
-            echo 'current timestamp on database-server is '.$tstamp.$msg;
+            echo 'current timestamp on database-server is ' . $tstamp . $msg;
             $this->SetStatus(102);
         } else {
             $this->SetStatus(201);
@@ -74,18 +74,18 @@ class IPSymconMySQL extends IPSModule
         $password = $this->ReadPropertyString('password');
         $database = $this->ReadPropertyString('database');
 
-        $this->SendDebug(__FUNCTION__, 'open database '.$database.'@'.$server.':'.$port.'(user='.$user.')', 0);
+        $this->SendDebug(__FUNCTION__, 'open database ' . $database . '@' . $server . ':' . $port . '(user=' . $user . ')', 0);
 
         $dbHandle = new mysqli($server, $user, $password, $database);
         if ($dbHandle->connect_errno) {
             $this->SetBuffer('dbHandle', '');
             $this->SendDebug(__FUNCTION__, "can't open database", 0);
-            echo "can't open database ".$database.'@'.$server.': '.$dbHandle->connect_error."\n";
+            echo "can't open database " . $database . '@' . $server . ': ' . $dbHandle->connect_error . "\n";
 
             return false;
         }
 
-        $this->SendDebug(__FUNCTION__, '  dbHandle='.print_r($dbHandle, true), 0);
+        $this->SendDebug(__FUNCTION__, '  dbHandle=' . print_r($dbHandle, true), 0);
 
         return $dbHandle;
     }
@@ -111,16 +111,16 @@ class IPSymconMySQL extends IPSModule
             return $dbHandle;
         }
 
-        $this->SendDebug(__FUNCTION__, 'execute statement "'.$statement.'" on '.$database.'@'.$server, 0);
+        $this->SendDebug(__FUNCTION__, 'execute statement "' . $statement . '" on ' . $database . '@' . $server, 0);
         $res = $dbHandle->query($statement);
         if ($res == false) {
             $this->SendDebug(__FUNCTION__, 'unable to execute statement', 0);
-            echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
+            echo 'unable to execute statement "' . $statement . '": ' . $dbHandle->error . "\n";
 
             return $res;
         }
 
-        $this->SendDebug(__FUNCTION__, '  got '.$res->num_rows.' row', 0);
+        $this->SendDebug(__FUNCTION__, '  got ' . $res->num_rows . ' row', 0);
 
         if (!isset($res->num_rows)) {
             return $res;
@@ -141,16 +141,16 @@ class IPSymconMySQL extends IPSModule
         $database = $this->ReadPropertyString('database');
 
         if ($dbHandle == false) {
-            echo 'unable to execute statement "'.$statement."\": invalid database-handle\n";
+            echo 'unable to execute statement "' . $statement . "\": invalid database-handle\n";
 
             return $dbHandle;
         }
 
-        $this->SendDebug(__FUNCTION__, 'query "'.$statement.'" on '.$database.'@'.$server, 0);
+        $this->SendDebug(__FUNCTION__, 'query "' . $statement . '" on ' . $database . '@' . $server, 0);
         $res = $dbHandle->query($statement);
         if ($res == false) {
             $this->SendDebug(__FUNCTION__, 'unable to query', 0);
-            echo 'unable to execute statement "'.$statement.'": '.$dbHandle->error."\n";
+            echo 'unable to execute statement "' . $statement . '": ' . $dbHandle->error . "\n";
 
             return $res;
         }
@@ -159,7 +159,7 @@ class IPSymconMySQL extends IPSModule
             return $res;
         }
 
-        $this->SendDebug(__FUNCTION__, '  got '.$res->num_rows.' row', 0);
+        $this->SendDebug(__FUNCTION__, '  got ' . $res->num_rows . ' row', 0);
 
         $rows = [];
         while ($row = $res->fetch_object()) {
