@@ -10,7 +10,7 @@ Modul für IP-Symcon ab Version 4.
 2. [Voraussetzungen](#2-voraussetzungen)  
 3. [Installation](#3-installation)  
 4. [Funktionsreferenz](#4-funktionsreferenz)
-5. [Konfiguration](#5-konfiguartion)  
+5. [Konfiguration](#5-konfiguration)
 6. [Anhang](#6-anhang)  
 
 ## 1. Funktionsumfang
@@ -46,7 +46,7 @@ In IP-Symcon nun _Instanz hinzufügen_ (_CTRL+1_) auswählen unter der Kategorie
 
 In dem Konfigurationsdialog den Datenbank-Server eintragen (Name oder IP-Adresse sind zulässig), Datenbank und Zugriffdaten
 
-## 4. PHP-Befehlsreferenz
+## 4. Funktionsreferenz
 
 ### zentrale Funktion
 
