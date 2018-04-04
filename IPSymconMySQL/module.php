@@ -110,7 +110,7 @@ class IPSymconMySQL extends IPSModule
             return $dbHandle;
         }
 
-		$ret = $this->Query($dbHandle, $statement);
+        $ret = $this->Query($dbHandle, $statement);
 
         return $ret;
     }
