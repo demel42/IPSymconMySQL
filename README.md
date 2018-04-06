@@ -6,12 +6,12 @@ Modul für IP-Symcon ab Version 4.
 
 **Inhaltsverzeichnis**
 
-1. [Funktionsumfang](#1-funktionsumfang)  
-2. [Voraussetzungen](#2-voraussetzungen)  
-3. [Installation](#3-installation)  
+1. [Funktionsumfang](#1-funktionsumfang)
+2. [Voraussetzungen](#2-voraussetzungen)
+3. [Installation](#3-installation)
 4. [Funktionsreferenz](#4-funktionsreferenz)
 5. [Konfiguration](#5-konfiguration)
-6. [Anhang](#6-anhang)  
+6. [Anhang](#6-anhang)
 
 ## 1. Funktionsumfang
 
@@ -31,14 +31,14 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 Die IP-Symcon (min Ver. 4.x) Konsole öffnen. Im Objektbaum unter Kerninstanzen die Instanz __*Modules*__ durch einen doppelten Mausklick öffnen.
 
 In der _Modules_ Instanz rechts oben auf den Button __*Hinzufügen*__ drücken.
- 
+
 In dem sich öffnenden Fenster folgende URL hinzufügen:
 
 `https://github.com/demel42/IPSymconMySQL.git`
-    
-und mit _OK_ bestätigen.    
-        
-Anschließend erscheint ein Eintrag für das Modul in der Liste der Instanz _Modules_    
+
+und mit _OK_ bestätigen.
+
+Anschließend erscheint ein Eintrag für das Modul in der Liste der Instanz _Modules_
 
 ### b. Einrichtung in IPS
 
@@ -86,4 +86,7 @@ analog zu _MySQL_ExecuteSimple_, jedoch wird der _dbHandle_ übergeben.
 
 ## 6. Anhang
 
-GUID: `{C0E06BE4-D9D8-4208-8CDB-93D161A7CA98}` 
+GUIDs
+- Modul: `{C0E06BE4-D9D8-4208-8CDB-93D161A7CA98}`
+
+- IPSymconMySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
