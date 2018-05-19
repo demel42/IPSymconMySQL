@@ -1,6 +1,6 @@
 <?php
 
-class IPSymconMySQL extends IPSModule
+class MySQL extends IPSModule
 {
     public function Create()
     {
