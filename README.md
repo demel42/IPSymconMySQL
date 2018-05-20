@@ -89,4 +89,4 @@ analog zu _MySQL_ExecuteSimple_, jedoch wird der _dbHandle_ übergeben.
 GUIDs
 - Modul: `{C0E06BE4-D9D8-4208-8CDB-93D161A7CA98}`
 - Instanzen:
-  - IPSymconMySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
+  - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
