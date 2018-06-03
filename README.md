@@ -82,7 +82,7 @@ analog zu _MySQL_ExecuteSimple_, jedoch wird der _dbHandle_ übergeben.
 
 | Bezeichnung                  | Beschreibung |
 | :--------------------------: | :------------------------------------------------: |
-| Verbindunstest               | Testet die Datenbankverbindung |
+| Verbindungstest              | Testet die Datenbankverbindung |
 
 ## 6. Anhang
 
