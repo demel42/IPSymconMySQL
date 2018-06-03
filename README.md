@@ -19,7 +19,7 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
 ## 2. Voraussetzungen
 
- - ab IPS 4.4
+ - IP-Symcon ab Version 4.4
  - Datenbank-Server
    - Typ: MySQL oder MariaDB
    - Datenbank mit ausreichenden Zugriffsrechten
