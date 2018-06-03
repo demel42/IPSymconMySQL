@@ -19,7 +19,7 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
 ## 2. Voraussetzungen
 
- - IPS 4.x
+ - ab IPS 4.4
  - Datenbank-Server
    - Typ: MySQL oder MariaDB
    - Datenbank mit ausreichenden Zugriffsrechten
@@ -28,7 +28,7 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
 ### a. Laden des Moduls
 
-Die IP-Symcon (min Ver. 4.x) Konsole öffnen. Im Objektbaum unter Kerninstanzen die Instanz __*Modules*__ durch einen doppelten Mausklick öffnen.
+Die Konsole von IP-Symcon öffnen. Im Objektbaum unter Kerninstanzen die Instanz __*Modules*__ durch einen doppelten Mausklick öffnen.
 
 In der _Modules_ Instanz rechts oben auf den Button __*Hinzufügen*__ drücken.
 
