@@ -1,7 +1,7 @@
 # IPSymconMySQL
 
 [![IPS-Version](https://img.shields.io/badge/Symcon_Version-4.4+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Module-Version](https://img.shields.io/badge/Modul_Version-1.0-blue.svg)
+![Module-Version](https://img.shields.io/badge/Modul_Version-1.1-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![StyleCI](https://github.styleci.io/repos/126709827/shield?branch=master)](https://github.styleci.io/repos/126709827)
@@ -16,6 +16,7 @@
 4. [Funktionsreferenz](#4-funktionsreferenz)
 5. [Konfiguration](#5-konfiguration)
 6. [Anhang](#6-anhang)
+7. [Versions-Historie](#7-versions-historie)
 
 ## 1. Funktionsumfang
 
@@ -94,3 +95,13 @@ GUIDs
 - Modul: `{C0E06BE4-D9D8-4208-8CDB-93D161A7CA98}`
 - Instanzen:
   - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
+
+## 7. Versions-Historie
+
+- 1.1 @ 20.09.2018 17:28<br>
+  - Versionshistorie dazu,
+  - define's der Variablentypen,
+  - Schaltfläche mit Link zu README.md im Konfigurationsdialog
+
+- 1.0 @ 24.03.2018 15:20<br>
+  Initiale Version
