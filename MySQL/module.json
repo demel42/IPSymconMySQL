@@ -1,0 +1,13 @@
+{
+	"id": "{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}",
+	"name": "MySQL",
+	"type": 3,
+	"vendor": "",
+	"aliases": [
+		"MySQL"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "MySQL"
+}
