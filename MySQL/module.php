@@ -76,7 +76,7 @@ class MySQL extends IPSModule
 
         $this->SendDebug(__FUNCTION__, 'open database ' . $database . '@' . $server . ':' . $port . '(user=' . $user . ')', 0);
 
-        $dbHandle = new mysqli($server, $user, $password, $database);
+        $dbHandle = new mysqli($server, $user, $password, $database, $port);
         if ($dbHandle->connect_errno) {
             $this->SendDebug(__FUNCTION__, " => can't open database", 0);
             echo "can't open database " . $database . '@' . $server . ': ' . $dbHandle->connect_error . "\n";

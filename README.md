@@ -1,7 +1,7 @@
 # IPSymconMySQL
 
 [![IPS-Version](https://img.shields.io/badge/Symcon_Version-4.4+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Module-Version](https://img.shields.io/badge/Modul_Version-1.1-blue.svg)
+![Module-Version](https://img.shields.io/badge/Modul_Version-1.2-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![StyleCI](https://github.styleci.io/repos/126709827/shield?branch=master)](https://github.styleci.io/repos/126709827)
@@ -97,6 +97,9 @@ GUIDs
   - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
 
 ## 7. Versions-Historie
+
+- 1.2 @ 10.03.2019 15:14<br>
+  - Fehlerkorrektur: Port wurde nicht gesetzt
 
 - 1.1 @ 20.09.2018 17:28<br>
   - Versionshistorie dazu,
