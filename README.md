@@ -1,6 +1,6 @@
 # IPSymconMySQL
 
-[![IPS-Version](https://img.shields.io/badge/Symcon_Version-4.4+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
+[![IPS-Version](https://img.shields.io/badge/Symcon_Version-5.0+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 ![Module-Version](https://img.shields.io/badge/Modul_Version-1.2-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -24,7 +24,8 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
 ## 2. Voraussetzungen
 
- - IP-Symcon ab Version 4.4
+ - IP-Symcon ab Version 5<br>
+   Version 4.4 mit Branch _ips_4.4_ (nur noch Fehlerkorrekturen)
  - Datenbank-Server
    - Typ: MySQL oder MariaDB
    - Datenbank mit ausreichenden Zugriffsrechten
@@ -97,6 +98,9 @@ GUIDs
   - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
 
 ## 7. Versions-Historie
+
+- 1.3 @ 20.03.2019 14:56<br>
+  - Anpassungen IPS 5, Abspaltung von Branch _ips_4.4_
 
 - 1.2 @ 10.03.2019 15:14<br>
   - Fehlerkorrektur: Datenbank-Port wurde nicht gesetzt
