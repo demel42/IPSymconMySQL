@@ -99,7 +99,7 @@ GUIDs
 ## 7. Versions-Historie
 
 - 1.2 @ 10.03.2019 15:14<br>
-  - Fehlerkorrektur: Port wurde nicht gesetzt
+  - Fehlerkorrektur: Datenbank-Port wurde nicht gesetzt
 
 - 1.1 @ 20.09.2018 17:28<br>
   - Versionshistorie dazu,
