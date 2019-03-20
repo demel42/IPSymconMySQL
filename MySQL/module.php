@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('IS_INVALIDCONFIG')) {
+    define('IS_INVALIDCONFIG', IS_EBASE + 1);
+}
+
 class MySQL extends IPSModule
 {
     public function Create()
@@ -41,10 +45,36 @@ class MySQL extends IPSModule
                 echo 'no value for property "database"';
                 $ok = false;
             }
-            $this->SetStatus($ok ? 102 : 201);
+            $this->SetStatus($ok ? IS_ACTIVE : IS_INVALIDCONFIG);
         } else {
-            $this->SetStatus(104);
+            $this->SetStatus(IS_INACTIVE);
         }
+    }
+
+    public function GetConfigurationForm()
+    {
+        $formElements = [];
+        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'server', 'caption' => 'Server'];
+        $formElements[] = ['type' => 'NumberSpinner', 'name' => 'port', 'caption' => 'Port'];
+        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'user', 'caption' => 'User'];
+        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'password', 'caption' => 'Password'];
+        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'database', 'caption' => 'Database'];
+
+        $formActions = [];
+        $formActions[] = ['type' => 'Button', 'label' => 'Test connection', 'onClick' => 'MySQL_TestConnection($id);'];
+        $formActions[] = ['type' => 'Label', 'label' => '____________________________________________________________________________________________________'];
+        $formActions[] = ['type' => 'Button', 'label' => 'Module description', 'onClick' => 'echo \'https://github.com/demel42/IPSymconMySQL/blob/master/README.md\';'];
+
+        $formStatus = [];
+        $formStatus[] = ['code' => IS_CREATING, 'icon' => 'inactive', 'caption' => 'Instance getting created'];
+        $formStatus[] = ['code' => IS_ACTIVE, 'icon' => 'active', 'caption' => 'Instance is active'];
+        $formStatus[] = ['code' => IS_DELETING, 'icon' => 'inactive', 'caption' => 'Instance is deleted'];
+        $formStatus[] = ['code' => IS_INACTIVE, 'icon' => 'inactive', 'caption' => 'Instance is inactive'];
+        $formStatus[] = ['code' => IS_NOTCREATED, 'icon' => 'inactive', 'caption' => 'Instance is not created'];
+
+        $formStatus[] = ['code' => IS_INVALIDCONFIG, 'icon' => 'error', 'caption' => 'Instance is inactive (invalid configuration)'];
+
+        return json_encode(['elements' => $formElements, 'actions' => $formActions, 'status' => $formStatus]);
     }
 
     public function TestConnection()
@@ -60,9 +90,9 @@ class MySQL extends IPSModule
                 $msg = '';
             }
             echo 'current timestamp on database-server is ' . $tstamp . $msg;
-            $this->SetStatus(102);
+            $this->SetStatus(IS_ACTIVE);
         } else {
-            $this->SetStatus(201);
+            $this->SetStatus(IS_INVALIDCONFIG);
         }
     }
 
