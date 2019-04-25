@@ -76,19 +76,19 @@ analog zu _MySQL_ExecuteSimple_, jedoch wird der _dbHandle_ übergeben.
 
 ### Variablen
 
-| Eigenschaft               | Typ      | Standardwert | Beschreibung |
-| :-----------------------: | :-----:  | :----------: | :----------------------------------------------------------------------------------------------------------: |
-| Server                    | string   |              | Hostname / IP-Adresse des Datenbank-Servers |
-| Port                      | integer  | 3306         | Port, unter dem der Datenbank-Server kommuniziert |
-| Benutzer                  | string   |              | Datenbank-Benutzer |
-| Passwort                  | string   |              | Passwort des Datenbank-Benutzers |
-| Datenbank                 | string   |              | zu benutzende Datenbank |
+| Eigenschaft | Typ     | Standardwert | Beschreibung |
+| :---------- | :------ | :----------- | :----------- |
+| Server      | string  |              | Hostname / IP-Adresse des Datenbank-Servers |
+| Port        | integer | 3306         | Port, unter dem der Datenbank-Server kommuniziert |
+| Benutzer    | string  |              | Datenbank-Benutzer |
+| Passwort    | string  |              | Passwort des Datenbank-Benutzers |
+| Datenbank   | string  |              | zu benutzende Datenbank |
 
 ### Schaltflächen
 
-| Bezeichnung                  | Beschreibung |
-| :--------------------------: | :------------------------------------------------: |
-| Verbindungstest              | Testet die Datenbankverbindung |
+| Bezeichnung     | Beschreibung |
+| :-------------- | :----------- |
+| Verbindungstest | Testet die Datenbankverbindung |
 
 ## 6. Anhang
 
