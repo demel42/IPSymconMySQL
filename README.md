@@ -1,7 +1,7 @@
 # IPSymconMySQL
 
 [![IPS-Version](https://img.shields.io/badge/Symcon_Version-5.0+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Module-Version](https://img.shields.io/badge/Modul_Version-1.3-blue.svg)
+![Module-Version](https://img.shields.io/badge/Modul_Version-1.4-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![StyleCI](https://github.styleci.io/repos/126709827/shield?branch=master)](https://github.styleci.io/repos/126709827)
@@ -98,6 +98,11 @@ GUIDs
   - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
 
 ## 7. Versions-Historie
+
+- 1.4 @ 29.09.2019 12:20<br>
+  - Anpassungen an IPS 5.2
+    - IPS_SetVariableProfileValues(), IPS_SetVariableProfileDigits() nur bei INTEGER, FLOAT
+    - Dokumentation-URL in module.json
 
 - 1.3 @ 20.03.2019 14:56<br>
   - Anpassungen IPS 5, Abspaltung von Branch _ips_4.4_
