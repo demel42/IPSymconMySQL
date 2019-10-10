@@ -4,7 +4,6 @@
 ![Module-Version](https://img.shields.io/badge/Modul_Version-1.4-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![StyleCI](https://github.styleci.io/repos/126709827/shield?branch=master)](https://github.styleci.io/repos/126709827)
 
 ## Dokumentation
 
@@ -99,10 +98,12 @@ GUIDs
 
 ## 7. Versions-Historie
 
-- 1.4 @ 29.09.2019 12:20<br>
+- 1.4 @ 10.10.2019 17:27<br>
   - Anpassungen an IPS 5.2
     - IPS_SetVariableProfileValues(), IPS_SetVariableProfileDigits() nur bei INTEGER, FLOAT
     - Dokumentation-URL in module.json
+  - Umstellung auf strict_types=1
+  - Umstellung von StyleCI auf php-cs-fixer
 
 - 1.3 @ 20.03.2019 14:56<br>
   - Anpassungen IPS 5, Abspaltung von Branch _ips_4.4_
