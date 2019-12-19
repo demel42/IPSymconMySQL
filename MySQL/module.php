@@ -63,10 +63,10 @@ class MySQL extends IPSModule
         $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'database', 'caption' => 'Database'];
 
         $formActions = [];
-        $formActions[] = ['type' => 'Button', 'label' => 'Test connection', 'onClick' => 'MySQL_TestConnection($id);'];
+        $formActions[] = ['type' => 'Button', 'caption' => 'Test connection', 'onClick' => 'MySQL_TestConnection($id);'];
         if (IPS_GetKernelVersion() < 5.2) {
-            $formActions[] = ['type' => 'Label', 'label' => '____________________________________________________________________________________________________'];
-            $formActions[] = ['type' => 'Button', 'label' => 'Module description', 'onClick' => 'echo \'https://github.com/demel42/IPSymconMySQL/blob/master/README.md\';'];
+            $formActions[] = ['type' => 'Label', 'caption' => '____________________________________________________________________________________________________'];
+            $formActions[] = ['type' => 'Button', 'caption' => 'Module description', 'onClick' => 'echo \'https://github.com/demel42/IPSymconMySQL/blob/master/README.md\';'];
         }
 
         $formStatus = [];

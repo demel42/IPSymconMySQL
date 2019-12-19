@@ -1,7 +1,7 @@
 # IPSymconMySQL
 
 [![IPS-Version](https://img.shields.io/badge/Symcon_Version-5.0+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Module-Version](https://img.shields.io/badge/Modul_Version-1.4-blue.svg)
+![Module-Version](https://img.shields.io/badge/Modul_Version-1.5-blue.svg)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
@@ -98,23 +98,27 @@ GUIDs
 
 ## 7. Versions-Historie
 
-- 1.4 @ 10.10.2019 17:27<br>
+- 1.5 @ 19.12.2019 14:09
+  - Anpassungen an IPS 5.3
+    - Formular-Elemente: 'label' in 'caption' geändert
+
+- 1.4 @ 10.10.2019 17:27
   - Anpassungen an IPS 5.2
     - IPS_SetVariableProfileValues(), IPS_SetVariableProfileDigits() nur bei INTEGER, FLOAT
     - Dokumentation-URL in module.json
   - Umstellung auf strict_types=1
   - Umstellung von StyleCI auf php-cs-fixer
 
-- 1.3 @ 20.03.2019 14:56<br>
+- 1.3 @ 20.03.2019 14:56
   - Anpassungen IPS 5, Abspaltung von Branch _ips_4.4_
 
-- 1.2 @ 10.03.2019 15:14<br>
+- 1.2 @ 10.03.2019 15:14
   - Fehlerkorrektur: Datenbank-Port wurde nicht gesetzt
 
-- 1.1 @ 20.09.2018 17:28<br>
+- 1.1 @ 20.09.2018 17:28
   - Versionshistorie dazu,
   - define's der Variablentypen,
   - Schaltfläche mit Link zu README.md im Konfigurationsdialog
 
-- 1.0 @ 24.03.2018 15:20<br>
-  Initiale Version
+- 1.0 @ 24.03.2018 15:20
+  - Initiale Version
