@@ -64,10 +64,6 @@ class MySQL extends IPSModule
 
         $formActions = [];
         $formActions[] = ['type' => 'Button', 'caption' => 'Test connection', 'onClick' => 'MySQL_TestConnection($id);'];
-        if (IPS_GetKernelVersion() < 5.2) {
-            $formActions[] = ['type' => 'Label', 'caption' => '____________________________________________________________________________________________________'];
-            $formActions[] = ['type' => 'Button', 'caption' => 'Module description', 'onClick' => 'echo \'https://github.com/demel42/IPSymconMySQL/blob/master/README.md\';'];
-        }
 
         $formStatus = [];
         $formStatus[] = ['code' => IS_CREATING, 'icon' => 'inactive', 'caption' => 'Instance getting created'];
