@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-if (!defined('IS_INVALIDCONFIG')) {
-    define('IS_INVALIDCONFIG', IS_EBASE + 1);
-}
+require_once __DIR__ . '/../libs/common.php'; // globale Funktionen
+require_once __DIR__ . '/../libs/local.php';  // lokale Funktionen
 
 class MySQL extends IPSModule
 {
+    use MySQLCommonLib;
+    use MySQLLocalLib;
+
     public function Create()
     {
         parent::Create();
@@ -47,34 +49,54 @@ class MySQL extends IPSModule
                 echo 'no value for property "database"';
                 $ok = false;
             }
-            $this->SetStatus($ok ? IS_ACTIVE : IS_INVALIDCONFIG);
+            $this->SetStatus($ok ? IS_ACTIVE : self::$IS_INVALIDCONFIG);
         } else {
             $this->SetStatus(IS_INACTIVE);
         }
     }
 
-    public function GetConfigurationForm()
+    protected function GetFormElements()
     {
         $formElements = [];
-        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'server', 'caption' => 'Server'];
-        $formElements[] = ['type' => 'NumberSpinner', 'name' => 'port', 'caption' => 'Port'];
-        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'user', 'caption' => 'User'];
-        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'password', 'caption' => 'Password'];
-        $formElements[] = ['type' => 'ValidationTextBox', 'name' => 'database', 'caption' => 'Database'];
+        $formElements[] = [
+            'type'    => 'ValidationTextBox',
+            'name'    => 'server',
+            'caption' => 'Server'
+        ];
+        $formElements[] = [
+            'type'    => 'NumberSpinner',
+            'name'    => 'port',
+            'caption' => 'Port'
+        ];
+        $formElements[] = [
+            'type'    => 'ValidationTextBox',
+            'name'    => 'user',
+            'caption' => 'User'
+        ];
+        $formElements[] = [
+            'type'    => 'ValidationTextBox',
+            'name'    => 'password',
+            'caption' => 'Password'
+        ];
+        $formElements[] = [
+            'type'    => 'ValidationTextBox',
+            'name'    => 'database',
+            'caption' => 'Database'
+        ];
 
+        return $formElements;
+    }
+
+    protected function GetFormActions()
+    {
         $formActions = [];
-        $formActions[] = ['type' => 'Button', 'caption' => 'Test connection', 'onClick' => 'MySQL_TestConnection($id);'];
+        $formActions[] = [
+            'type'    => 'Button',
+            'caption' => 'Test connection',
+            'onClick' => 'MySQL_TestConnection($id);'
+        ];
 
-        $formStatus = [];
-        $formStatus[] = ['code' => IS_CREATING, 'icon' => 'inactive', 'caption' => 'Instance getting created'];
-        $formStatus[] = ['code' => IS_ACTIVE, 'icon' => 'active', 'caption' => 'Instance is active'];
-        $formStatus[] = ['code' => IS_DELETING, 'icon' => 'inactive', 'caption' => 'Instance is deleted'];
-        $formStatus[] = ['code' => IS_INACTIVE, 'icon' => 'inactive', 'caption' => 'Instance is inactive'];
-        $formStatus[] = ['code' => IS_NOTCREATED, 'icon' => 'inactive', 'caption' => 'Instance is not created'];
-
-        $formStatus[] = ['code' => IS_INVALIDCONFIG, 'icon' => 'error', 'caption' => 'Instance is inactive (invalid configuration)'];
-
-        return json_encode(['elements' => $formElements, 'actions' => $formActions, 'status' => $formStatus]);
+        return $formActions;
     }
 
     public function TestConnection()
@@ -92,7 +114,7 @@ class MySQL extends IPSModule
             echo 'current timestamp on database-server is ' . $tstamp . $msg;
             $this->SetStatus(IS_ACTIVE);
         } else {
-            $this->SetStatus(IS_INVALIDCONFIG);
+            $this->SetStatus(self::$IS_INVALIDCONFIG);
         }
     }
 
