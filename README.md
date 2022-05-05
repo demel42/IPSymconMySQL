@@ -1,6 +1,6 @@
 # IPSymconMySQL
 
-[![IPS-Version](https://img.shields.io/badge/Symcon_Version-5.3+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
+[![IPS-Version](https://img.shields.io/badge/Symcon_Version-6.0+-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 ![Code](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
@@ -22,8 +22,7 @@ Ein vereinfachtes Interface zu einer MySQL-Datenbank für die Basis-Befehle, es 
 
 ## 2. Voraussetzungen
 
- - IP-Symcon ab Version 5.3<br>
-   Version 4.4 mit Branch _ips_4.4_ (nur noch Fehlerkorrekturen)
+ - IP-Symcon ab Version 6.0
  - Datenbank-Server
    - Typ: MySQL oder MariaDB
    - Datenbank mit ausreichenden Zugriffsrechten
@@ -96,6 +95,13 @@ GUIDs
   - MySQL: `{7B420C9A-F0FF-4C65-925D-6FEE0D8F1A55}`
 
 ## 7. Versions-Historie
+
+- 1.8 @ 05.05.2022 17:53
+  - IPS-Version ist nun minimal 6.0
+  - Anzeige der Modul/Bibliotheks-Informationen, Referenzen und Timer
+  - Implememtierung einer Update-Logik
+  - Überlagerung von Translate und Aufteilung von locale.json in 3 translation.json (Modul, libs und CommonStubs)
+  - diverse interne Änderungen
 
 - 1.7 @ 18.12.2020 14:57
   - PHP_CS_FIXER_IGNORE_ENV=1 in github/workflows/style.yml eingefügt

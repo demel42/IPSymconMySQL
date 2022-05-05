@@ -2,13 +2,22 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../libs/common.php'; // globale Funktionen
-require_once __DIR__ . '/../libs/local.php';  // lokale Funktionen
+require_once __DIR__ . '/../libs/common.php';
+require_once __DIR__ . '/../libs/local.php';
 
 class MySQL extends IPSModule
 {
-    use MySQLCommonLib;
+    use MySQL\StubsCommonLib;
     use MySQLLocalLib;
+
+    private $ModuleDir;
+
+    public function __construct(string $InstanceID)
+    {
+        parent::__construct($InstanceID);
+
+        $this->ModuleDir = __DIR__;
+    }
 
     public function Create()
     {
@@ -19,69 +28,100 @@ class MySQL extends IPSModule
         $this->RegisterPropertyString('user', '');
         $this->RegisterPropertyString('password', '');
         $this->RegisterPropertyString('database', '');
+
+        $this->RegisterAttributeString('UpdateInfo', '');
+
+        $this->InstallVarProfiles(false);
+    }
+
+    private function CheckModuleConfiguration()
+    {
+        $r = [];
+
+        $server = $this->ReadPropertyString('server');
+        if ($server == '') {
+            $this->SendDebug(__FUNCTION__, '"server" is missing', 0);
+            $r[] = $this->Translate('Server must be specified');
+        }
+
+        $user = $this->ReadPropertyString('user');
+        if ($user == '') {
+            $this->SendDebug(__FUNCTION__, '"user" is missing', 0);
+            $r[] = $this->Translate('User must be specified');
+        }
+
+        $password = $this->ReadPropertyString('password');
+        if ($password == '') {
+            $this->SendDebug(__FUNCTION__, '"password" is missing', 0);
+            $r[] = $this->Translate('Password must be specified');
+        }
+
+        $database = $this->ReadPropertyString('database');
+        if ($database == '') {
+            $this->SendDebug(__FUNCTION__, '"database" is missing', 0);
+            $r[] = $this->Translate('Database must be specified');
+        }
+
+        return $r;
     }
 
     public function ApplyChanges()
     {
         parent::ApplyChanges();
 
-        $server = $this->ReadPropertyString('server');
-        $port = $this->ReadPropertyInteger('port');
-        $user = $this->ReadPropertyString('user');
-        $password = $this->ReadPropertyString('password');
-        $database = $this->ReadPropertyString('database');
+        $this->MaintainReferences();
 
-        if ($server != '' && $port > 0) {
-            $ok = true;
-            if ($server == '') {
-                echo 'no value for property "server"';
-                $ok = false;
-            }
-            if ($user == '') {
-                echo 'no value for property "user"';
-                $ok = false;
-            }
-            if ($password == '') {
-                echo 'no value for property "password"';
-                $ok = false;
-            }
-            if ($database == '') {
-                echo 'no value for property "database"';
-                $ok = false;
-            }
-            $this->SetStatus($ok ? IS_ACTIVE : self::$IS_INVALIDCONFIG);
-        } else {
-            $this->SetStatus(IS_INACTIVE);
+        if ($this->CheckPrerequisites() != false) {
+            $this->SetStatus(self::$IS_INVALIDPREREQUISITES);
+            return;
         }
+
+        if ($this->CheckUpdate() != false) {
+            $this->SetStatus(self::$IS_UPDATEUNCOMPLETED);
+            return;
+        }
+
+        if ($this->CheckConfiguration() != false) {
+            $this->SetStatus(self::$IS_INVALIDCONFIG);
+            return;
+        }
+
+        $this->SetStatus(IS_ACTIVE);
     }
 
     protected function GetFormElements()
     {
-        $formElements = [];
+        $formElements = $this->GetCommonFormElements('MySQL');
+
+        if ($this->GetStatus() == self::$IS_UPDATEUNCOMPLETED) {
+            return $formElements;
+        }
+
         $formElements[] = [
-            'type'    => 'ValidationTextBox',
             'name'    => 'server',
-            'caption' => 'Server'
+            'type'    => 'ValidationTextBox',
+            'caption' => 'Server',
         ];
         $formElements[] = [
-            'type'    => 'NumberSpinner',
             'name'    => 'port',
-            'caption' => 'Port'
+            'type'    => 'NumberSpinner',
+            'minimum' => 0,
+            'caption' => 'Port',
         ];
         $formElements[] = [
-            'type'    => 'ValidationTextBox',
             'name'    => 'user',
-            'caption' => 'User'
+            'type'    => 'ValidationTextBox',
+            'caption' => 'User',
         ];
         $formElements[] = [
-            'type'    => 'ValidationTextBox',
             'name'    => 'password',
+            'type'    => 'PasswordTextBox',
             'caption' => 'Password'
         ];
         $formElements[] = [
-            'type'    => 'ValidationTextBox',
             'name'    => 'database',
-            'caption' => 'Database'
+            'type'    => 'ValidationTextBox',
+            'caption' => 'Database',
         ];
 
         return $formElements;
@@ -90,13 +130,38 @@ class MySQL extends IPSModule
     protected function GetFormActions()
     {
         $formActions = [];
+
+        if ($this->GetStatus() == self::$IS_UPDATEUNCOMPLETED) {
+            $formActions[] = $this->GetCompleteUpdateFormAction();
+
+            $formActions[] = $this->GetInformationFormAction();
+            $formActions[] = $this->GetReferencesFormAction();
+
+            return $formActions;
+        }
+
         $formActions[] = [
             'type'    => 'Button',
             'caption' => 'Test connection',
-            'onClick' => 'MySQL_TestConnection($id);'
+            'onClick' => $this->GetModulePrefix() . '_TestConnection($id);'
         ];
 
+        $formActions[] = $this->GetInformationFormAction();
+        $formActions[] = $this->GetReferencesFormAction();
+
         return $formActions;
+    }
+
+    public function RequestAction($ident, $value)
+    {
+        if ($this->CommonRequestAction($ident, $value)) {
+            return;
+        }
+        switch ($ident) {
+            default:
+                $this->SendDebug(__FUNCTION__, 'invalid ident ' . $ident, 0);
+                break;
+        }
     }
 
     public function TestConnection()

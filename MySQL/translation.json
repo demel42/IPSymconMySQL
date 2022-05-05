@@ -1,0 +1,25 @@
+{
+	"translations": {
+		"de": {
+			"MySQL": "MySQL",
+
+			"__function__": "CheckConfiguration",
+			"Server must be specified": "Server muss angegeben werden",
+			"User must be specified": "Benutzer muss angegeben werden",
+			"Password must be specified": "Passwort muss angegeben werden",
+			"Database must be specified": "Datenbank muss angegeben werden",
+
+			"__elements__": "",
+			"Server": "Server",
+			"Port": "Port",
+			"User": "Benutzer",
+			"Password": "Passwort",
+			"Database": "Datenbank",
+
+			"__actions__": "",
+			"Test connection": "Verbindung prüfen",
+
+			"__end__": ""
+		}
+	}
+}
