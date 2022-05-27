@@ -89,7 +89,7 @@ class MySQL extends IPSModule
         $this->SetStatus(IS_ACTIVE);
     }
 
-    protected function GetFormElements()
+    private function GetFormElements()
     {
         $formElements = $this->GetCommonFormElements('MySQL');
 
@@ -127,7 +127,7 @@ class MySQL extends IPSModule
         return $formElements;
     }
 
-    protected function GetFormActions()
+    private function GetFormActions()
     {
         $formActions = [];
 
@@ -143,7 +143,7 @@ class MySQL extends IPSModule
         $formActions[] = [
             'type'    => 'Button',
             'caption' => 'Test connection',
-            'onClick' => $this->GetModulePrefix() . '_TestConnection($id);'
+            'onClick' => 'IPS_RequestAction(' . $this->InstanceID . ', "TestConnection", "");',
         ];
 
         $formActions[] = $this->GetInformationFormAction();
@@ -158,13 +158,16 @@ class MySQL extends IPSModule
             return;
         }
         switch ($ident) {
+            case 'TestConnection':
+                $this->TestConnection();
+                break;
             default:
                 $this->SendDebug(__FUNCTION__, 'invalid ident ' . $ident, 0);
                 break;
         }
     }
 
-    public function TestConnection()
+    private function TestConnection()
     {
         $rows = $this->ExecuteSimple('select now() as now');
         if ($rows && isset($rows[0]->now)) {
@@ -176,7 +179,8 @@ class MySQL extends IPSModule
             } else {
                 $msg = '';
             }
-            echo 'current timestamp on database-server is ' . $tstamp . $msg;
+            $msg = 'current timestamp on database-server is ' . $tstamp . $msg;
+            $this->PopupMessage($msg);
             $this->SetStatus(IS_ACTIVE);
         } else {
             $this->SetStatus(self::$IS_INVALIDCONFIG);
