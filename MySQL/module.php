@@ -72,21 +72,21 @@ class MySQL extends IPSModule
         $this->MaintainReferences();
 
         if ($this->CheckPrerequisites() != false) {
-            $this->SetStatus(self::$IS_INVALIDPREREQUISITES);
+            $this->MaintainStatus(self::$IS_INVALIDPREREQUISITES);
             return;
         }
 
         if ($this->CheckUpdate() != false) {
-            $this->SetStatus(self::$IS_UPDATEUNCOMPLETED);
+            $this->MaintainStatus(self::$IS_UPDATEUNCOMPLETED);
             return;
         }
 
         if ($this->CheckConfiguration() != false) {
-            $this->SetStatus(self::$IS_INVALIDCONFIG);
+            $this->MaintainStatus(self::$IS_INVALIDCONFIG);
             return;
         }
 
-        $this->SetStatus(IS_ACTIVE);
+        $this->MaintainStatus(IS_ACTIVE);
     }
 
     private function GetFormElements()
@@ -181,9 +181,9 @@ class MySQL extends IPSModule
             }
             $msg = 'current timestamp on database-server is ' . $tstamp . $msg;
             $this->PopupMessage($msg);
-            $this->SetStatus(IS_ACTIVE);
+            $this->MaintainStatus(IS_ACTIVE);
         } else {
-            $this->SetStatus(self::$IS_INVALIDCONFIG);
+            $this->MaintainStatus(self::$IS_INVALIDCONFIG);
         }
     }
 
