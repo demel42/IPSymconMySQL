@@ -10,13 +10,16 @@ class MySQL extends IPSModule
     use MySQL\StubsCommonLib;
     use MySQLLocalLib;
 
-    private $ModuleDir;
-
     public function __construct(string $InstanceID)
     {
         parent::__construct($InstanceID);
 
-        $this->ModuleDir = __DIR__;
+        $this->CommonContruct(__DIR__);
+    }
+
+    public function __destruct()
+    {
+        $this->CommonDestruct();
     }
 
     public function Create()
@@ -29,7 +32,8 @@ class MySQL extends IPSModule
         $this->RegisterPropertyString('password', '');
         $this->RegisterPropertyString('database', '');
 
-        $this->RegisterAttributeString('UpdateInfo', '');
+        $this->RegisterAttributeString('UpdateInfo', json_encode([]));
+        $this->RegisterAttributeString('ModuleStats', json_encode([]));
 
         $this->InstallVarProfiles(false);
     }
